@@ -8,7 +8,6 @@ Eclipse Mars.2 (4.5.2) with JRE 8.
 
 ## Sample output (truncated):
 ```
-{
 Equestria: {
  1 (Wooden Forest): {
   Population: 5
