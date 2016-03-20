@@ -37,7 +37,7 @@ Type: royal
 Entering "Advanced Mode" in EQCityGen lists the population type and all of the ponies in the city.
 
 To enter Advanced Mode, go to `Equestria.java` and find the line that looks like:
-
-```city.setAdvancedMode(false);```
-
+```
+city.setAdvancedMode(false);
+```
 Change the `false` to `true`, and then run.
