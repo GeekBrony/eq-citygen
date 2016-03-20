@@ -14,7 +14,7 @@ public class Equestria {
 			c[x] = city;
 			x++;
 		}
-		System.out.println(Tools.cityArrayToString(c));
+		System.out.println("Equestria: " + Tools.cityArrayToString(c));
 		// In theory, this will print the cities AND the ponies in them :D
 	}
 

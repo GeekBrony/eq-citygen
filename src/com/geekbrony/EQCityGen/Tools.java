@@ -15,7 +15,7 @@ public class Tools {
 	}
 	
 	public static int random(int min, int max) {
-		return (int) (Math.random() * (max - min + 1) + min);
+		return makeInt(Math.random() * (max - min + 1) + min);
 	}
 	
 	public static int randomize(int rangeWithoutZero) {
@@ -27,11 +27,11 @@ public class Tools {
 	}
 	
 	public static String ponyArrayToString(Pony[] arr) {
-		String start = "\n {", end = "\n }";
+		String start = "{", end = "\n  }";
 		String p = start+"";
 		int x = 0;
 		while (x < arr.length) {
-			p += "\n  Pony "+(x + 1)+": "+arr[x];
+			p += "\n   Pony "+(x + 1)+": "+arr[x];
 			if(x < arr.length - 1) {
 				p += "";
 			}
@@ -45,9 +45,9 @@ public class Tools {
 		String p = start+"";
 		int x = 0;
 		while (x < arr.length) {
-			p += "\n"+(x + 1)+":\n"+arr[x];
+			p += "\n "+(x + 1)+" ("+arr[x].name+"): {\n  "+arr[x];
 			if(x < arr.length - 1) {
-				p += "\n";
+				p += "\n }";
 			}
 			x++;
 		}

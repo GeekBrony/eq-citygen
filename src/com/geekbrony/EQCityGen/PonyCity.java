@@ -152,14 +152,13 @@ public class PonyCity {
 
 	public String toString() {
 		List<String> st = new ArrayList<String>();
-		st.add("Name: " + this.name);
 		st.add("Population: " + this.population);
 		st.add("Type: " + this.cityType);
 		if(isAdvancedMode()) {
 			st.add("Population Type: " + stringifyPopulationType(population_type));
 			st.add("Ponies: " + Tools.ponyArrayToString(pA));
 		}
-		String p = String.join("\n", st);
+		String p = String.join("\n  ", st);
 		return p;
 	}
 
