@@ -22,6 +22,7 @@ public class PonyCity {
 	public long population;
 	public PopulationType population_type;
 	public String cityType;
+	public Pony[] pA;
 
 	/*
 	 * -------------------------------------------------------------------------
@@ -33,20 +34,20 @@ public class PonyCity {
 	public PonyCity() {
 
 		// Randomize seed and population type
-		int population = (int) (Math.random() * 3);
+		int population = Tools.randomizeInclZero(3);
 
 		// Determine the population
 		if (population == PopulationType.VACANT_CITY.numVal) {
 			this.population = 0;
 			this.population_type = PopulationType.VACANT_CITY;
 		} else if (population == PopulationType.LOW_POPULATION.numVal) {
-			this.population = (int) (Math.random() * (50 - 1 + 1) + 1);
+			this.population = Tools.random(1, 50);
 			this.population_type = PopulationType.LOW_POPULATION;
 		} else if (population == PopulationType.MED_POPULATION.numVal) {
-			this.population = (int) (Math.random() * (250 - 51 + 1) + 51);
+			this.population = Tools.random(51, 250);
 			this.population_type = PopulationType.MED_POPULATION;
 		} else if (population == PopulationType.MAX_POPULATION.numVal) {
-			this.population = (int) (Math.random() * (500 - 251 + 1) + 251);
+			this.population = Tools.random(251, 500);
 			this.population_type = PopulationType.MAX_POPULATION;
 		}
 
@@ -63,7 +64,18 @@ public class PonyCity {
 			suffix = "lot";
 			this.name = constructName(suffix, false, true);
 		}
+		
+		generatePonies(this.population);
 
+	}
+
+	public void generatePonies(long population) {
+		int x = 0, pop = Tools.makeInt(population);
+		pA = new Pony[pop]; 
+		while(x < population) {
+			pA[x] = new Pony();
+			x++;
+		}
 	}
 
 	public PonyCity(String name, PopulationType populationType) {
@@ -73,13 +85,13 @@ public class PonyCity {
 			this.population = 0;
 			this.population_type = PopulationType.VACANT_CITY;
 		} else if (populationType == PopulationType.LOW_POPULATION) {
-			this.population = random(1, 50);
+			this.population = Tools.random(1, 50);
 			this.population_type = PopulationType.LOW_POPULATION;
 		} else if (populationType == PopulationType.MED_POPULATION) {
-			this.population = random(51, 250);
+			this.population = Tools.random(51, 250);
 			this.population_type = PopulationType.MED_POPULATION;
 		} else if (populationType == PopulationType.MAX_POPULATION) {
-			this.population = random(251, 500);
+			this.population = Tools.random(251, 500);
 			this.population_type = PopulationType.MAX_POPULATION;
 		}
 
@@ -91,7 +103,7 @@ public class PonyCity {
 
 	public String determineCityType(long population) {
 		if (population <= 500 && population > 10) {
-			if ((Math.random() * 5) < 1) {
+			if (Tools.randomize(4) < 1) {
 				return TYPE_ROYAL;
 			} else {
 				return TYPE_VILLAGE;
@@ -131,9 +143,9 @@ public class PonyCity {
 			"Name: " + this.name,
 			"Population: " + this.population,
 			"Population Type: " + stringifyPopulationType(population_type),
-			"Type: " + this.cityType
+			"Type: " + this.cityType,
+			"Ponies: " + Tools.ponyArrayToString(pA)
 		);
-
 		String p = String.join("\n", st);
 		return p;
 	}
@@ -150,10 +162,6 @@ public class PonyCity {
 		public int getNumVal() {
 			return numVal;
 		}
-	}
-	
-	public int random(int min, int max) {
-		return (int) (Math.random() * (max - min + 1) + min);
 	}
 
 }
