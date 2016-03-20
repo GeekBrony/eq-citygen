@@ -12,13 +12,11 @@ Eclipse Mars.2 (4.5.2) with JRE 8.
 1:
 Name: Maneville
 Population: 18
-Population Type: Low Population
 Type: village
 
 2:
 Name: Evershade Forest
 Population: 0
-Population Type: Vacant
 Type: forest
 
 [...]
@@ -26,13 +24,20 @@ Type: forest
 9:
 Name: Canterlot
 Population: 121
-Population Type: Medium Population
 Type: royal
 
 10:
 Name: Fillylot
 Population: 141
-Population Type: Medium Population
 Type: royal
 }
 ```
+
+## Entering advanced mode
+Entering "Advanced Mode" in EQCityGen lists the population type and all of the ponies in the city.
+
+To enter Advanced Mode, go to `Equestria.java` and find the line that looks like:
+
+```city.setAdvancedMode(false);```
+
+Change the `false` to `true`, and then run.
