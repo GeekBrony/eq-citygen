@@ -4,7 +4,8 @@ A random city generator, with pony names.
 This project was made purely out of boredom. Not sure if I'll be continuing it. :P
 
 Sample output (truncated):
-```{
+```
+{
 1:
 Name: Maneville
 Population: 18
@@ -30,4 +31,5 @@ Name: Fillylot
 Population: 141
 Population Type: Medium Population
 Type: royal
-}```
+}
+```
