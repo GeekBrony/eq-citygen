@@ -9,27 +9,21 @@ Eclipse Mars.2 (4.5.2) with JRE 8.
 ## Sample output (truncated):
 ```
 {
-1:
-Name: Maneville
-Population: 18
-Type: village
-
-2:
-Name: Evershade Forest
-Population: 0
-Type: forest
-
+Equestria: {
+ 1 (Wooden Forest): {
+  Population: 5
+  Type: forest
+ }
+ 2 (Evershade Forest): {
+  Population: 0
+  Type: forest
+ }
+ 
 [...]
 
-9:
-Name: Canterlot
-Population: 121
-Type: royal
-
-10:
-Name: Fillylot
-Population: 141
-Type: royal
+ 10 (Newville): {
+  Population: 22
+  Type: village
 }
 ```
 
