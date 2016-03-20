@@ -1,6 +1,6 @@
 package com.geekbrony.EQCityGen;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PonyCity {
@@ -23,15 +23,15 @@ public class PonyCity {
 	public PopulationType population_type;
 	public String cityType;
 	public Pony[] pA;
+	public boolean advancedMode;
 
-	/*
-	 * -------------------------------------------------------------------------
-	 * - | New City with no variables defined means that it randomizes the
-	 * values |
-	 * -------------------------------------------------------------------------
-	 * -
+	/* --------------------------------------------------------------------------
+	 * | New City with no variables defined means that it randomizes the values |
+	 * --------------------------------------------------------------------------
 	 */
 	public PonyCity() {
+		
+		advancedMode = false;
 
 		// Randomize seed and population type
 		int population = Tools.randomizeInclZero(3);
@@ -69,17 +69,10 @@ public class PonyCity {
 
 	}
 
-	public void generatePonies(long population) {
-		int x = 0, pop = Tools.makeInt(population);
-		pA = new Pony[pop]; 
-		while(x < population) {
-			pA[x] = new Pony();
-			x++;
-		}
-	}
-
 	public PonyCity(String name, PopulationType populationType) {
 
+		advancedMode = false;
+		
 		// Determine the population
 		if (populationType == PopulationType.VACANT_CITY) {
 			this.population = 0;
@@ -98,7 +91,26 @@ public class PonyCity {
 		// Determine the name
 		this.cityType = determineCityType(this.population);
 		this.name = name;
+		
+		generatePonies(this.population);
 
+	}
+	
+	public boolean isAdvancedMode() {
+		return this.advancedMode;
+	}
+	
+	public void setAdvancedMode(boolean b) {
+		this.advancedMode = b;
+	}
+	
+	public void generatePonies(long population) {
+		int x = 0, pop = Tools.makeInt(population);
+		pA = new Pony[pop]; 
+		while(x < population) {
+			pA[x] = new Pony();
+			x++;
+		}
 	}
 
 	public String determineCityType(long population) {
@@ -139,13 +151,14 @@ public class PonyCity {
 	}
 
 	public String toString() {
-		List<String> st = Arrays.asList(
-			"Name: " + this.name,
-			"Population: " + this.population,
-			"Population Type: " + stringifyPopulationType(population_type),
-			"Type: " + this.cityType,
-			"Ponies: " + Tools.ponyArrayToString(pA)
-		);
+		List<String> st = new ArrayList<String>();
+		st.add("Name: " + this.name);
+		st.add("Population: " + this.population);
+		st.add("Type: " + this.cityType);
+		if(isAdvancedMode()) {
+			st.add("Population Type: " + stringifyPopulationType(population_type));
+			st.add("Ponies: " + Tools.ponyArrayToString(pA));
+		}
 		String p = String.join("\n", st);
 		return p;
 	}

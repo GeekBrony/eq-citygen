@@ -10,6 +10,7 @@ public class Equestria {
 		PonyCity[] c = new PonyCity[NUM_CITIES_TO_GENERATE];
 		while (x < NUM_CITIES_TO_GENERATE) {
 			PonyCity city = new PonyCity();
+			city.setAdvancedMode(true);
 			c[x] = city;
 			x++;
 		}

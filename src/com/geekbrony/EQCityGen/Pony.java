@@ -49,7 +49,7 @@ public class Pony {
 	}
 	
 	public String toString() {
-		return "Pony Name: " + this.name;
+		return this.name;
 	}
 
 }

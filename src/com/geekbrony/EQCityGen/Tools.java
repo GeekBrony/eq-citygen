@@ -27,13 +27,13 @@ public class Tools {
 	}
 	
 	public static String ponyArrayToString(Pony[] arr) {
-		String start = "{", end = "\n }";
+		String start = "\n {", end = "\n }";
 		String p = start+"";
 		int x = 0;
 		while (x < arr.length) {
-			p += "\nPony "+(x + 1)+":\n"+arr[x];
+			p += "\n  Pony "+(x + 1)+": "+arr[x];
 			if(x < arr.length - 1) {
-				p += "\n";
+				p += "";
 			}
 			x++;
 		}
