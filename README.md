@@ -3,7 +3,10 @@ A random city generator, with pony names.
 
 This project was made purely out of boredom. Not sure if I'll be continuing it. :P
 
-Sample output (truncated):
+## Build environment
+Eclipse Mars.2 (4.5.2) with JRE 8.
+
+## Sample output (truncated):
 ```
 {
 1:
