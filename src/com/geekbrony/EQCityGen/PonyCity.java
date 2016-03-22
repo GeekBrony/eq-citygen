@@ -11,6 +11,8 @@ public class PonyCity {
 	public final String TYPE_OCEAN = "CITY_OCEAN";
 	public final String TYPE_ROYAL = "CITY_ROYAL";
 
+	// TODO: Make more possible city names.
+	
 	public final String[] CityPrefixes = { "Pony", "Canter", "Whinny", "Neigh", "Mane", "New", "Apple", "Saddle",
 			"Prance", "Filly", "Clouds", "Dream", "Stallion", "Mare" };
 	
@@ -27,6 +29,7 @@ public class PonyCity {
 	public String cityType;
 	public Pony[] pA;
 	public boolean advancedMode;
+	public int poniesRegenerated = 0;
 
 	/* --------------------------------------------------------------------------
 	 * | New City with no variables defined means that it randomizes the values |
@@ -109,9 +112,9 @@ public class PonyCity {
 	
 	public void generatePonies(long population) {
 		if(!(population == 0)) {
-			//Tools.log("Creating "+population+" random ponies in city \""+this.name+"\".");
+			//Tools.log("Creating "+population+" random ponies poniesRegenerated city \""+this.name+"\".");
 		}
-		int x = 0, pop = Tools.makeInt(population), in = 0;
+		int x = 0, pop = Tools.makeInt(population);
 		pA = new Pony[pop]; 
 		while(x < population) {
 			pA[x] = new Pony();
@@ -120,15 +123,12 @@ public class PonyCity {
 				while(i < x) {
 					if(pA[x].name.equalsIgnoreCase(pA[i].name)) {
 						pA[x] = new Pony();
-						in++;
+						poniesRegenerated++;
 					}
 					i++;
 				}
 			}
 			x++;
-		}
-		if(in != 0) {
-			Tools.log("Recreated "+in+" ponies because of duplicate names.");
 		}
 	}
 

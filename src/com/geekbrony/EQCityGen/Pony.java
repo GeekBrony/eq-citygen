@@ -71,7 +71,7 @@ public class Pony {
 	}
 	
 	public void generateInterests(int seed, int offset) {
-		while(offset < 2) {
+		while(offset < 1) {
 			int ra = Tools.randomizeInclZero(intList.length);
 			interests.add(intList[ra][Tools.randomizeInclZero(intList[ra].length)]);
 			offset++;
@@ -83,7 +83,7 @@ public class Pony {
 	}
 
 	public String toString() {
-		return "{\n"+"    Name: "+this.name+"\n    Interests: "+String.join(", ", interests)+"\n   }";
+		return "{\n"+"    Name: "+this.name+"\n    Talent: "+String.join(", ", interests)+"\n   }";
 	}
 
 }

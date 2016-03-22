@@ -12,6 +12,7 @@ public class Equestria {
 		onEnable();
 		
 		doGeneration(NUM_CITIES_TO_GENERATE, ADVANCED_MODE);
+		Tools.log("Listing city array.");
 		Tools.print(Tools.cityArrayToString(c));
 		
 		onDisable();
@@ -46,14 +47,27 @@ public class Equestria {
 			}
 			x++;
 		}
-		if(in != 0) {
-			Tools.log("Recreated "+in+" cities because of duplicate names.");
-		}
 		Tools.log("Generating ponies.");
+		int pR = 0;
 		for(int n = 0; n < c.length; n++) {
 			c[n].generatePonies(c[n].population);
 			c[n].setAdvancedMode(adv);
+			if(c[n].poniesRegenerated != 0) {
+				pR = pR + c[n].poniesRegenerated;
+			}
 		}
+		if(in != 0 || pR != 0) {
+			String cT = " cities";
+			String pN = " ponies";
+			if(in == 1) {
+				cT = " city";
+			}
+			if(pR == 1) {
+				pN = " pony";
+			}
+			Tools.log("Recreated "+in+cT+" and "+pR+pN+" because of duplicate names.");
+		}
+
 	}
 
 }
