@@ -1,5 +1,8 @@
 package com.geekbrony.EQCityGen;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class Tools {
 
 	public Tools() {
@@ -24,6 +27,19 @@ public class Tools {
 	
 	public static int randomizeInclZero(int range) {
 		return makeInt(Math.random() * (range));
+	}
+	
+	public static void print(Object o) {
+		System.out.println(o);
+	}
+	
+	public static void log(Object o) {
+		System.out.println("["+currentDate()+"] " + o);
+	}
+	
+	public static String currentDate() {
+		long d = new Date().getTime();
+		return DateFormat.getTimeInstance(DateFormat.MEDIUM).format(d);
 	}
 	
 	public static String ponyArrayToString(Pony[] arr) {

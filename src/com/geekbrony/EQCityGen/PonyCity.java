@@ -12,9 +12,9 @@ public class PonyCity {
 	public final String TYPE_ROYAL = "royal";
 
 	public final String[] CityPrefixes = { "Pony", "Canter", "Whinny", "Neigh", "Mane", "New", "Apple", "Saddle",
-			"Prance", "Filly" };
+			"Prance", "Filly", "Clouds", "Dream" };
 
-	public final String[] ForestPrefixes = { "Everfree", "Leaf-a-lot", "Wooden", "Oak", "Evershade" };
+	public final String[] ForestPrefixes = { "Everfree", "Leaf-a-lot", "Wooden", "Oak", "Evershade", "Hallow" };
 
 	// Define field
 	public int seed;
@@ -105,6 +105,9 @@ public class PonyCity {
 	}
 	
 	public void generatePonies(long population) {
+		if(!(population == 0)) {
+			Tools.log("Creating "+population+" random ponies in city \""+this.name+"\".");
+		}
 		int x = 0, pop = Tools.makeInt(population);
 		pA = new Pony[pop]; 
 		while(x < population) {
