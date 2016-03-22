@@ -24,7 +24,7 @@ public class Pony {
 		"Velvet","Berry","Daisy","Serenity","Midnight","Meadow","Paradise","Aura","Magic",
 		"Golden","Dainty","Happy","Apple","Monsoon","Perfect","Diamond","Silver","Ginger",
 		"Lavender","Summer","Sweet","Lightning","Shadow","Winter","Cheery","Fizzy","Emerald",
-		"Flurry","Cheese","Thunder","Frozen","Sapphire",""
+		"Flurry","Cheese","Thunder","Frozen","Sapphire","Summer","Spring","Fall","Starry"
 	};
 	
 	public final String[] nameSuffixes = {
@@ -37,7 +37,7 @@ public class Pony {
 	};
 	
 	public final String[] intCreative = {
-		"Artist","Writer","Musician","Singer","Photographer","Scientist","Baker"
+		"Artist","Writer","Musician","Singer","Photographer","Scientist","Baker","Teacher"
 	};
 	
 	public final String[] intPhysical = {
@@ -66,17 +66,19 @@ public class Pony {
 			this.name = prefix + " " + suffix;
 		}
 		
-		generateInterests(Tools.randomizeInclZero(32768 / 4));
+		generateInterests(Tools.randomizeInclZero(32768 / 4), 0);
 		
 	}
 	
-	public void generateInterests(int seed) {
-		int x = 0;
-		while(x < 2) {
+	public void generateInterests(int seed, int offset) {
+		while(offset < 2) {
 			int ra = Tools.randomizeInclZero(intList.length);
 			interests.add(intList[ra][Tools.randomizeInclZero(intList[ra].length)]);
-			
-			x++;
+			offset++;
+			if(Tools.duplicates(interests)) {
+				offset--;
+				interests.remove(offset);
+			}
 		}
 	}
 

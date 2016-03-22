@@ -2,11 +2,31 @@ package com.geekbrony.EQCityGen;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Tools {
+	
+	private static boolean LOGGER_ENABLED = false;
 
 	public Tools() {
 		
+	}
+	
+	public static void loggerEnabled(boolean b) {
+		if(!b) {
+			log("Logger disabled.");
+			LOGGER_ENABLED = b;
+		} else {
+			LOGGER_ENABLED = b;
+			log("Logger enabled.");
+		}
+		
+	}
+	
+	public static boolean isLoggerEnabled() {
+		return LOGGER_ENABLED;
 	}
 	
 	public static int makeInt(double d) {
@@ -34,7 +54,8 @@ public class Tools {
 	}
 	
 	public static void log(Object o) {
-		System.out.println("["+currentDate()+"] " + o);
+		if(LOGGER_ENABLED)
+			System.out.println("["+currentDate()+"] " + o);
 	}
 	
 	public static String currentDate() {
@@ -68,6 +89,24 @@ public class Tools {
 			x++;
 		}
 		return p+end;
+	}
+	
+	public static boolean duplicates (List<String> interests) {
+		Object[] x = interests.toArray();
+	    Set<Object> set = new HashSet<Object>();
+	    for ( int i = 0; i < x.length; ++i ) {
+	        if (set.contains(x[i])) {
+	            return true;
+	        }
+	        else {
+	            set.add(x[i]);
+	        }
+	    }
+	    return false;
+	}
+	
+	public static String getVersion() {
+		return new Version().VERSION;
 	}
 
 }

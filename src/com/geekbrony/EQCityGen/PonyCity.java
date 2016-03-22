@@ -6,15 +6,18 @@ import java.util.List;
 public class PonyCity {
 
 	// Define acceptable city parameters.
-	public final String TYPE_FOREST = "forest";
-	public final String TYPE_VILLAGE = "village";
-	public final String TYPE_OCEAN = "ocean";
-	public final String TYPE_ROYAL = "royal";
+	public final String TYPE_FOREST = "CITY_FOREST";
+	public final String TYPE_VILLAGE = "CITY_VILLAGE";
+	public final String TYPE_OCEAN = "CITY_OCEAN";
+	public final String TYPE_ROYAL = "CITY_ROYAL";
 
 	public final String[] CityPrefixes = { "Pony", "Canter", "Whinny", "Neigh", "Mane", "New", "Apple", "Saddle",
-			"Prance", "Filly", "Clouds", "Dream" };
+			"Prance", "Filly", "Clouds", "Dream", "Stallion", "Mare" };
+	
+	public final String[] CitySuffixes = {"ville"," Village"," Town"," City"};
 
-	public final String[] ForestPrefixes = { "Everfree", "Leaf-a-lot", "Wooden", "Oak", "Evershade", "Hallow" };
+	public final String[] ForestPrefixes = { "Everfree", "Leaf-a-lot", "Wooden", "Oak", "Evershade", "Hallow",
+			"Starry" };
 
 	// Define field
 	public int seed;
@@ -58,14 +61,12 @@ public class PonyCity {
 			suffix = "Forest";
 			this.name = constructName(suffix, true, false);
 		} else if (this.cityType == TYPE_VILLAGE) {
-			suffix = "ville";
+			suffix = this.CitySuffixes[Tools.randomizeInclZero(3)];
 			this.name = constructName(suffix, false, true);
 		} else if (this.cityType == TYPE_ROYAL) {
 			suffix = "lot";
 			this.name = constructName(suffix, false, true);
 		}
-		
-		generatePonies(this.population);
 
 	}
 
@@ -91,8 +92,6 @@ public class PonyCity {
 		// Determine the name
 		this.cityType = determineCityType(this.population);
 		this.name = name;
-		
-		generatePonies(this.population);
 
 	}
 	
@@ -104,15 +103,32 @@ public class PonyCity {
 		this.advancedMode = b;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public void generatePonies(long population) {
 		if(!(population == 0)) {
-			Tools.log("Creating "+population+" random ponies in city \""+this.name+"\".");
+			//Tools.log("Creating "+population+" random ponies in city \""+this.name+"\".");
 		}
-		int x = 0, pop = Tools.makeInt(population);
+		int x = 0, pop = Tools.makeInt(population), in = 0;
 		pA = new Pony[pop]; 
 		while(x < population) {
 			pA[x] = new Pony();
+			if(x != 0) {
+				int i = 0;
+				while(i < x) {
+					if(pA[x].name.equalsIgnoreCase(pA[i].name)) {
+						pA[x] = new Pony();
+						in++;
+					}
+					i++;
+				}
+			}
 			x++;
+		}
+		if(in != 0) {
+			Tools.log("Recreated "+in+" ponies because of duplicate names.");
 		}
 	}
 
@@ -158,10 +174,12 @@ public class PonyCity {
 		st.add("Population: " + this.population);
 		st.add("Type: " + this.cityType);
 		if(isAdvancedMode()) {
-			st.add("Population Type: " + stringifyPopulationType(population_type));
-			st.add("Ponies: " + Tools.ponyArrayToString(pA));
+			st.add("Population Type: \"" + stringifyPopulationType(population_type)+"\"");
+			if(!(this.population == 0)) {
+				st.add("Ponies: " + Tools.ponyArrayToString(pA));
+			}
 		}
-		String p = String.join("\n  ", st);
+		String p = String.join(";\n  ", st);
 		return p;
 	}
 
