@@ -109,4 +109,12 @@ public class Tools {
 		return new Version().VERSION;
 	}
 
+	public static int changeToInt(String string) {
+		try {
+		    return Integer.parseInt(string);
+		} catch (NumberFormatException e) {
+			return -1;
+		}
+	}
+
 }

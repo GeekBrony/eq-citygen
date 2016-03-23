@@ -51,7 +51,7 @@ public class Pony {
 	// End name definitions, begin variables
 	
 	public String name;
-	public List<String> interests = new ArrayList<String>();;
+	public List<String> interests = new ArrayList<String>();
 
 	public Pony() {
 		

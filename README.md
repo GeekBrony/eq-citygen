@@ -31,6 +31,6 @@ Entering "Advanced Mode" in EQCityGen lists the population type and all of the p
 
 To enter Advanced Mode, go to `Equestria.java` and find the line that looks like:
 ```
-city.setAdvancedMode(false);
+public final static boolean ADVANCED_MODE = false;
 ```
 Change the `false` to `true`, and then run.

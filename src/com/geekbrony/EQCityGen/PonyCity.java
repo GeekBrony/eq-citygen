@@ -30,12 +30,17 @@ public class PonyCity {
 	public Pony[] pA;
 	public boolean advancedMode;
 	public int poniesRegenerated = 0;
+	public int id;
+	public static int idSetter = 0;
 
 	/* --------------------------------------------------------------------------
 	 * | New City with no variables defined means that it randomizes the values |
 	 * --------------------------------------------------------------------------
 	 */
 	public PonyCity() {
+		
+		this.id = idSetter;
+		idSetter++;
 		
 		advancedMode = false;
 
@@ -75,6 +80,9 @@ public class PonyCity {
 
 	public PonyCity(String name, PopulationType populationType) {
 
+		this.id = idSetter;
+		idSetter++;
+		
 		advancedMode = false;
 		
 		// Determine the population
@@ -171,6 +179,7 @@ public class PonyCity {
 
 	public String toString() {
 		List<String> st = new ArrayList<String>();
+		st.add("ID: " + this.id);
 		st.add("Population: " + this.population);
 		st.add("Type: " + this.cityType);
 		if(isAdvancedMode()) {
